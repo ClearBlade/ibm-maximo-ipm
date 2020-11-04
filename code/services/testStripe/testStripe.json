@@ -3,9 +3,11 @@
     "auto_restart": false,
     "concurrency": 0,
     "dependencies": "log,http",
-    "execution_timeout": 120,
-    "logging_enabled": true,
-    "name": "test_MaximoAPI",
-    "params": [],
+    "execution_timeout": 60,
+    "logging_enabled": false,
+    "name": "testStripe",
+    "params": [
+        ""
+    ],
     "run_user": ""
 }
