@@ -3,7 +3,25 @@ const { portal, internalResource, service, library, widgetId, configName } = req
 const { allLibrariesConfig, allServicesConfig, allWidgetsConfig, allPortalsConfig, portalConfig, allConfig, serviceConfig, widgetConfig, internalResourceConfig, libraryConfig, clearbladeHotReloadConfig } = require('./configConsts');
 const { getLibrariesPath, getServicesPath, getWidgetsPath, getPortalsPath, getAllPath, getLibraryPath, getServicePath, getInternalResourcePath, getPortalConfigPath, getWidgetPath } = require('./getAssets');
 const { allFileTypes } = require('./configConsts');
+const path = require('path');
 const webpack = require('webpack');
+
+const codeEngineEnvironment = {
+  // The environment supports arrow functions ('() => { ... }').
+  arrowFunction: false,
+  // The environment supports BigInt as literal (123n).
+  bigIntLiteral: false,
+  // The environment supports const and let for variable declarations.
+  const: false,
+  // The environment supports destructuring ('{ a, b } = obj').
+  destructuring: false,
+  // The environment supports an async import() function to import EcmaScript modules.
+  dynamicImport: false,
+  // The environment supports 'for of' iteration ('for (const x of array) { ... }').
+  forOf: false,
+  // The environment supports ECMAScript Module syntax to import ECMAScript modules (import ... from '...').
+  module: false,
+};
 
 // add or override configuration options here
 const generateConfig = () => {
@@ -96,26 +114,43 @@ const generateConfig = () => {
       }
     case allServicesConfig:
       return {
+        // todo: apply env.js to all service entries
         entry: getAllServicesEntries(),
         output: {
           filename: `[name]`,
-          path: getServicesPath()
+          path: getServicesPath(),
+          environment: codeEngineEnvironment
         }
       }
     case serviceConfig:
       return {
-        entry: `${getServicePath(service, true)}/${service}`,
+        entry: {
+          index: [
+            path.resolve(__dirname, "polyfills/env.js"),
+            '@babel/polyfill',
+            `${getServicePath(service, true)}/${service}`,
+          ],
+        },
+        plugins: [
+          new webpack.ProvidePlugin({
+            process: path.resolve(__dirname, "polyfills/process.js"),
+            setImmediate: path.resolve(__dirname, "polyfills/setImmediate.js"),
+          }),
+        ],
         output: {
           filename: `${service}.js`,
-          path: getServicePath(service)
+          path: getServicePath(service),
+          environment: codeEngineEnvironment
         }
       }
+      // todo: apply entry and plugins to libraries
     case allLibrariesConfig:
       return {
         entry: getAllLibrariesEntries(),
         output: {
           filename: `[name]`,
-          path: getLibrariesPath()
+          path: getLibrariesPath(),
+          environment: codeEngineEnvironment
         }
       }
     case libraryConfig:
@@ -123,7 +158,8 @@ const generateConfig = () => {
         entry: `${getLibraryPath(library, true)}/${library}`,
         output: {
           filename: `${library}.js`,
-          path: getLibraryPath(library)
+          path: getLibraryPath(library),
+          environment: codeEngineEnvironment
         }
       }
     }
@@ -138,7 +174,14 @@ const baseConfig = {
         test: /\.tsx?$|\.jsx?$/,
         loader: "babel-loader",
         options: {
-          presets: ["@babel/preset-env"]
+          presets: [
+            [
+              '@babel/preset-env',
+              {
+                useBuiltIns: 'entry',
+              },
+            ],
+          ],
         }
       },
       {
@@ -150,11 +193,17 @@ const baseConfig = {
   },
   resolve: {
     extensions: allFileTypes,
-
-  },
-  target: "node",
-  node: {
-    global: true
+    fallback: {
+      path: "path-browserify",
+      crypto: "crypto-browserify",
+      buffer: "buffer",
+      stream: "stream-browserify",
+      child_process: false,
+      url: "url",
+      http: path.resolve(__dirname, "polyfills/http/index.js"),
+      https: path.resolve(__dirname, "polyfills/https/index.js"),
+    },
+    aliasFields: []
   },
   optimization: {
     minimize: false
