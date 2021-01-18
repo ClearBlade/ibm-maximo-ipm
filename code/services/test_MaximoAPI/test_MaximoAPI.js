@@ -21,7 +21,7 @@ var http = module.exports;
 http.request = function (opts, cb) {
   console.log('http.request::', opts, cb);
   if (typeof opts === "string") opts = url.parse(opts);else opts = extend(opts);
-  var protocol = opts.protocol || "https:";
+  var protocol = opts.protocol || "http:";
   var host = opts.hostname || opts.host;
   var port = opts.port;
   var path = opts.path || "/"; // Necessary for IPv6 addresses
@@ -122,6 +122,7 @@ xhr = null; // Help gc
 /***/ 9059:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+/* provided dependency */ var Buffer = __webpack_require__(5494)["Buffer"];
 /* provided dependency */ var process = __webpack_require__(7844);
 var capability = __webpack_require__(5107);
 
@@ -386,6 +387,7 @@ var unsafeHeaders = ["accept-charset", "accept-encoding", "access-control-reques
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 /* provided dependency */ var process = __webpack_require__(7844);
+/* provided dependency */ var Buffer = __webpack_require__(5494)["Buffer"];
 var capability = __webpack_require__(5107);
 
 var inherits = __webpack_require__(443);
@@ -3057,8 +3059,9 @@ module.exports = {
 /***/ }),
 
 /***/ 3678:
-/***/ (function(module) {
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+/* provided dependency */ var Buffer = __webpack_require__(5494)["Buffer"];
 module.exports = function isBuffer(arg) {
   return arg instanceof Buffer;
 };
@@ -15618,8 +15621,9 @@ module.exports = __webpack_require__(4584);
 /***/ }),
 
 /***/ 3079:
-/***/ (function(__unused_webpack_module, exports) {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
+/* provided dependency */ var Buffer = __webpack_require__(5494)["Buffer"];
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 // Copyright Joyent, Inc. and other Node contributors.
@@ -20078,6 +20082,7 @@ function createAttachment(buffer, current, datacallback) {
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
+/* provided dependency */ var Buffer = __webpack_require__(6276)["Buffer"];
 
 
 module.exports = AuthConnector;
@@ -20229,6 +20234,7 @@ function getAuthTypeHeader(my, fconnect) {
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
+/* provided dependency */ var Buffer = __webpack_require__(6276)["Buffer"];
 
 
 module.exports = CRUDConnector;
@@ -20612,6 +20618,7 @@ function asynch(my, datacallback) {
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
+/* provided dependency */ var Buffer = __webpack_require__(6276)["Buffer"];
 
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -20837,6 +20844,7 @@ function nextPage(np) {
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
+/* provided dependency */ var Buffer = __webpack_require__(6276)["Buffer"];
 
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -21078,6 +21086,7 @@ function nextPage(np) {
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
+/* provided dependency */ var Buffer = __webpack_require__(6276)["Buffer"];
 
 
 module.exports = SchemaConnector;
@@ -21381,6 +21390,7 @@ ResourceObject.prototype.name = function () {
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
+/* provided dependency */ var Buffer = __webpack_require__(6276)["Buffer"];
 
 
 module.exports = ResourceSet;
@@ -33403,8 +33413,9 @@ function config(name) {
 /***/ }),
 
 /***/ 5976:
-/***/ (function(module) {
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
+/* provided dependency */ var Buffer = __webpack_require__(5494)["Buffer"];
 module.exports = function isBuffer(arg) {
   return arg instanceof Buffer;
 };
@@ -34737,10 +34748,12 @@ _global["default"]._babelPolyfill = true;
 function test_MaximoAPI(req, resp) {
   var options = {
     protocol: "http",
-    hostname: "trial.maximosaas.ibm.com",
+    // ANS: changed hostname, user and password below 1/10/2021
+    //hostname: "trial.maximosaas.ibm.com",
+    hostname: "maximo.clearblade.com",
     port: "9080",
-    user: "asharma@clearblade.com",
-    password: "asharma",
+    user: "maxadmin",
+    password: "r3g1Ty$@3",
     auth_scheme: "/maximo",
     authtype: "maxauth",
     islean: 0
