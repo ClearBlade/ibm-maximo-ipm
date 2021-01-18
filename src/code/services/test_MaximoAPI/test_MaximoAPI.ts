@@ -3,13 +3,15 @@ import Maximo from 'ibm-maximo-api';
 function test_MaximoAPI(req: CbServer.BasicReq, resp: CbServer.Resp) {
   var options = {
     protocol: "http",
-    hostname: "trial.maximosaas.ibm.com",
+    // ANS: changed hostname, user and password below 1/10/2021
+    //hostname: "trial.maximosaas.ibm.com",
+    hostname: "maximo.clearblade.com",
     port: "9080",
-    user: "asharma@clearblade.com",
-    password: "asharma",
+    user: "maxadmin",
+    password: "r3g1Ty$@3",
     auth_scheme: "/maximo",
     authtype: "maxauth",
-    islean: 0,
+    islean: 0
   };
 
   const maximo = new Maximo(options);
