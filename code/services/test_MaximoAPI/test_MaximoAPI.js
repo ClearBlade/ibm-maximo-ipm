@@ -34747,20 +34747,23 @@ _global["default"]._babelPolyfill = true;
 
 function test_MaximoAPI(req, resp) {
   var options = {
-    protocol: "http",
+    protocol: 'http',
     // ANS: changed hostname, user and password below 1/10/2021
-    //hostname: "trial.maximosaas.ibm.com",
-    hostname: "maximo.clearblade.com",
-    port: "9080",
-    user: "maxadmin",
-    password: "r3g1Ty$@3",
-    auth_scheme: "/maximo",
-    authtype: "maxauth",
-    islean: 0
+    //hostname: 'trial.maximosaas.ibm.com',
+    hostname: 'maximo.clearblade.com',
+    port: '9080',
+    user: 'maxadmin',
+    password: 'r3g1Ty$@3',
+    auth_scheme: '/maximo',
+    authtype: 'maxauth',
+    islean: 1
   };
   var maximo = new (ibm_maximo_api__WEBPACK_IMPORTED_MODULE_0___default())(options);
   maximo.authenticate().then(function (jsessionid) {
-    resp.success(jsessionid);
+    maximo.resourceobject('mxasset').name().select(['assetnum', 'serialnum', 'assettype']).where('assetum').equal('BU1').fetch().then(function (resourceset) {
+      var jsondata = resourceset.thisResourceSet();
+      resp.success(jsondata);
+    });
   }).fail(function (error) {
     resp.error(error);
   });
