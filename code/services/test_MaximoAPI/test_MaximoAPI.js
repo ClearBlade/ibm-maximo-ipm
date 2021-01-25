@@ -34734,7 +34734,7 @@ function test_MaximoAPI(req, resp) {
   var maximo = new (ibm_maximo_api__WEBPACK_IMPORTED_MODULE_0___default())(options);
   maximo.authenticate().then(function (jsessionid) {
     try {
-      maximo.resourceobject("mxasset").select(["assetnum", "serialnum", "assettype"]).where("assetum").equal("BU1").fetch().then(function (resourceset) {
+      maximo.resourceobject("mxasset").select(["assetnum", "serialnum", "assettype"]).where("assetnum").equal("BU1").fetch().then(function (resourceset) {
         var jsondata = resourceset.thisResourceSet();
         resp.success(jsondata);
       });

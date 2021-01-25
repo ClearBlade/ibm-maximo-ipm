@@ -22,7 +22,7 @@ function test_MaximoAPI(req: CbServer.BasicReq, resp: CbServer.Resp) {
         maximo
           .resourceobject("mxasset")
           .select(["assetnum", "serialnum", "assettype"])
-          .where("assetum")
+          .where("assetnum")
           .equal("BU1")
           .fetch()
           .then(function (resourceset) {
