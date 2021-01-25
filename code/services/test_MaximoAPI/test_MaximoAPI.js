@@ -20016,7 +20016,7 @@ function createAttachment(buffer, current, datacallback) {
   var deferred = Q.defer();
   var returndata = '';
 
-  var client = __webpack_require__(7054)(current.resourceURI.split(':')[0]);
+  var client = __webpack_require__(current.resourceURI.split(':')[0] === 'https' ? 3190 : 9783);
 
   var host = current.resourceURI.split(':')[1].split("//")[1];
   var port = current.resourceURI.split(':')[2].split("/")[0];
@@ -20272,11 +20272,11 @@ function CRUDConnector(maximoRestUrl, maximopath) {
     if (typeof this.maximoRestUrl === "string") {
       var urlarray = this.maximoRestUrl.split(':');
       var port = urlarray[2].split("/")[0];
-      this.client = __webpack_require__(7911)(urlarray[0]);
+      this.client = __webpack_require__(urlarray[0] === 'https' ? 3190 : 9783);
       this.xpublicuri = urlarray[0] + ":" + urlarray[1] + ":" + port + X_PUB_PATH;
       console.log("***** this.xpublicuri " + this.xpublicuri);
     } else {
-      this.client = __webpack_require__(7911)(this.maximoRestUrl.protocol.split(':')[0]);
+      this.client = __webpack_require__(this.maximoRestUrl.protocol.split(':')[0] === 'https' ? 3190 : 9783);
       this.xpublicuri = this.maximoRestUrl.protocol + "//" + this.maximoRestUrl.hostname + ":" + this.maximoRestUrl.port + X_PUB_PATH;
     }
   }
@@ -20296,7 +20296,7 @@ CRUDConnector.prototype.__create = function (jsonbody, props, attachments, datac
   var deferred = Q.defer();
   var returndata = '';
 
-  var client = __webpack_require__(7911)(this.maximoRestUrl.protocol.split(':')[0]);
+  var client = __webpack_require__(this.maximoRestUrl.protocol.split(':')[0] === 'https' ? 3190 : 9783);
 
   var statusCode = "";
   var resourceset = "";
@@ -20365,7 +20365,7 @@ CRUDConnector.prototype.__crud = function (jsonbody, props, current, method, xme
   var deferred = Q.defer();
   var returndata = '';
 
-  var client = __webpack_require__(7911)(current.resourceURI.split(':')[0]);
+  var client = __webpack_require__(current.resourceURI.split(':')[0] === 'https' ? 3190 : 9783);
 
   var host = current.resourceURI.split(':')[1].split("//")[1];
   var port = current.resourceURI.split(':')[2].split("/")[0];
@@ -20516,7 +20516,7 @@ function ExternalConnector(options, resourceset) {
   this.options = options;
   this.resourceset = resourceset;
   this.protocol = options.protocol == null ? "http" : options.protocol;
-  this.client = __webpack_require__(7911)(this.protocol);
+  this.client = __webpack_require__(this.protocol === 'https' ? 3190 : 9783);
   this.host = options.host;
   this.port = options.port;
   this.endpoint = options.endpoint;
@@ -20654,7 +20654,7 @@ var ResourceSet = __webpack_require__(7408);
 function FetchConnector(maximoRestUrl, maximopath) {
   X_PUB_PATH = maximoRestUrl.auth_scheme + '/oslc/';
   this.maximoRestUrl = maximoRestUrl;
-  this.client = __webpack_require__(7911)(this.maximoRestUrl.protocol.split(':')[0]);
+  this.client = __webpack_require__(this.maximoRestUrl.protocol.split(':')[0] === 'https' ? 3190 : 9783);
   this.xpublicuri = this.maximoRestUrl.protocol + "//" + this.maximoRestUrl.hostname + ":" + this.maximoRestUrl.port + X_PUB_PATH;
   this.maximopath = maximopath;
   this.cookie = null;
@@ -20727,7 +20727,7 @@ FetchConnector.prototype.__fetchnext = function (np, myconnector, datacallback) 
     var nextpath = np_uri.substr(np_uri.indexOf(this.maximoRestUrl.port) + this.maximoRestUrl.port.length);
     var returndata = '';
 
-    var client = __webpack_require__(7911)(this.maximoRestUrl.protocol.split(':')[0]);
+    var client = __webpack_require__(this.maximoRestUrl.protocol.split(':')[0] === 'https' ? 3190 : 9783);
 
     var statusCode = "";
     var resourceset = "";
@@ -20885,11 +20885,11 @@ function RelatedConnector(maximoRestUrl, maximopath) {
     if (typeof this.maximoRestUrl === "string") {
       var urlarray = this.maximoRestUrl.split(':');
       var port = urlarray[2].split("/")[0];
-      this.client = __webpack_require__(7911)(urlarray[0]);
+      this.client = __webpack_require__(urlarray[0] === 'https' ? 3190 : 9783);
       this.xpublicuri = urlarray[0] + ":" + urlarray[1] + ":" + port + X_PUB_PATH;
       console.log("***** this.xpublicuri " + this.xpublicuri);
     } else {
-      this.client = __webpack_require__(7911)(this.maximoRestUrl.protocol.split(':')[0]);
+      this.client = __webpack_require__(this.maximoRestUrl.protocol.split(':')[0] === 'https' ? 3190 : 9783);
       this.xpublicuri = this.maximoRestUrl.protocol + "//" + this.maximoRestUrl.hostname + ":" + this.maximoRestUrl.port + X_PUB_PATH;
     }
   }
@@ -20969,7 +20969,7 @@ RelatedConnector.prototype.__fetchnext = function (np, myconnector, datacallback
     var nextpath = np_uri.substr(np_uri.indexOf(this.maximoRestUrl.port) + this.maximoRestUrl.port.length);
     var returndata = '';
 
-    var client = __webpack_require__(7911)(this.maximoRestUrl.protocol.split(':')[0]);
+    var client = __webpack_require__(this.maximoRestUrl.protocol.split(':')[0] === 'https' ? 3190 : 9783);
 
     var statusCode = "";
     var resourceset = "";
@@ -21120,7 +21120,7 @@ var ResourceSet = __webpack_require__(7408);
 function SchemaConnector(maximoRestUrl, maximopath) {
   X_PUB_PATH = maximoRestUrl.auth_scheme + '/oslc/';
   this.maximoRestUrl = maximoRestUrl;
-  this.client = __webpack_require__(7911)(this.maximoRestUrl.protocol.split(':')[0]);
+  this.client = __webpack_require__(this.maximoRestUrl.protocol.split(':')[0] === 'https' ? 3190 : 9783);
   this.xpublicuri = this.maximoRestUrl.protocol + "//" + this.maximoRestUrl.hostname + ":" + this.maximoRestUrl.port + X_PUB_PATH;
   this.maximopath = maximopath;
   this.cookie = null;
@@ -21393,6 +21393,8 @@ ResourceObject.prototype.name = function () {
 /* provided dependency */ var Buffer = __webpack_require__(6276)["Buffer"];
 
 
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 module.exports = ResourceSet;
 
 var url = __webpack_require__(8001);
@@ -21427,6 +21429,7 @@ var SchemaConnector = __webpack_require__(6265);
 
 
 function ResourceSet(resourcemboset, cookie, maxfactory, mbo) {
+  console.log('ResourceSet:: ', _typeof(resourcemboset), _typeof(cookie), _typeof(maxfactory), _typeof(mbo));
   this.cookie = cookie; // Since JavaScript does not support method/constructor overloading we have
   // to handle multiple constructors by sniffing them out manually.
   // Constructor 1
@@ -21646,7 +21649,7 @@ ResourceSet.prototype.invoke = function (resource, datacallback) {
   var deferred = Q.defer();
   var returndata = '';
 
-  var client = __webpack_require__(7054)(this.maximoRestUrl.protocol.split(':')[0]);
+  var client = __webpack_require__(this.maximoRestUrl.protocol.split(':')[0] === 'https' ? 3190 : 9783);
 
   var statusCode = "";
   var resourceset = "";
@@ -34590,36 +34593,6 @@ function extend() {
   return target;
 }
 
-/***/ }),
-
-/***/ 7911:
-/***/ (function(module) {
-
-function webpackEmptyContext(req) {
-	var e = new Error("Cannot find module '" + req + "'");
-	e.code = 'MODULE_NOT_FOUND';
-	throw e;
-}
-webpackEmptyContext.keys = function() { return []; };
-webpackEmptyContext.resolve = webpackEmptyContext;
-webpackEmptyContext.id = 7911;
-module.exports = webpackEmptyContext;
-
-/***/ }),
-
-/***/ 7054:
-/***/ (function(module) {
-
-function webpackEmptyContext(req) {
-	var e = new Error("Cannot find module '" + req + "'");
-	e.code = 'MODULE_NOT_FOUND';
-	throw e;
-}
-webpackEmptyContext.keys = function() { return []; };
-webpackEmptyContext.resolve = webpackEmptyContext;
-webpackEmptyContext.id = 7054;
-module.exports = webpackEmptyContext;
-
 /***/ })
 
 /******/ 	});
@@ -34747,23 +34720,27 @@ _global["default"]._babelPolyfill = true;
 
 function test_MaximoAPI(req, resp) {
   var options = {
-    protocol: 'http',
+    protocol: "http",
     // ANS: changed hostname, user and password below 1/10/2021
     //hostname: 'trial.maximosaas.ibm.com',
-    hostname: 'maximo.clearblade.com',
-    port: '9080',
-    user: 'maxadmin',
-    password: 'r3g1Ty$@3',
-    auth_scheme: '/maximo',
-    authtype: 'maxauth',
+    hostname: "maximo.clearblade.com",
+    port: "9080",
+    user: "maxadmin",
+    password: "r3g1Ty$@3",
+    auth_scheme: "/maximo",
+    authtype: "maxauth",
     islean: 1
   };
   var maximo = new (ibm_maximo_api__WEBPACK_IMPORTED_MODULE_0___default())(options);
   maximo.authenticate().then(function (jsessionid) {
-    maximo.resourceobject('mxasset').name().select(['assetnum', 'serialnum', 'assettype']).where('assetum').equal('BU1').fetch().then(function (resourceset) {
-      var jsondata = resourceset.thisResourceSet();
-      resp.success(jsondata);
-    });
+    try {
+      maximo.resourceobject("mxasset").select(["assetnum", "serialnum", "assettype"]).where("assetum").equal("BU1").fetch().then(function (resourceset) {
+        var jsondata = resourceset.thisResourceSet();
+        resp.success(jsondata);
+      });
+    } catch (e) {
+      resp.error(e.message);
+    }
   }).fail(function (error) {
     resp.error(error);
   });
