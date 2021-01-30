@@ -21,7 +21,8 @@ function test_MaximoAPI(req: CbServer.BasicReq, resp: CbServer.Resp) {
       try {
         maximo
           .resourceobject("mxasset")
-          .select(["assetnum", "serialnum", "assettype"])
+          .select(["*"])
+          // "assetnum", "serialnum", "assettype", "serialnum", "siteid", "priority"
           .where("assetnum")
           .equal("BU1")
           .fetch()
