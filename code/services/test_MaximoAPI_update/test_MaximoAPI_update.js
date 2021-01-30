@@ -34718,7 +34718,7 @@ _global["default"]._babelPolyfill = true;
 /* harmony import */ var ibm_maximo_api__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(ibm_maximo_api__WEBPACK_IMPORTED_MODULE_0__);
 ;
 
-function test_MaximoAPI(req, resp) {
+function test_MaximoAPI_update(req, resp) {
   var options = {
     protocol: "http",
     // ANS: changed hostname, user and password below 1/10/2021
@@ -34731,13 +34731,19 @@ function test_MaximoAPI(req, resp) {
     authtype: "maxauth",
     islean: 1
   };
+  var wo = '';
+  var updates = req.params;
   var maximo = new (ibm_maximo_api__WEBPACK_IMPORTED_MODULE_0___default())(options);
   maximo.authenticate().then(function (jsessionid) {
     try {
-      maximo.resourceobject("mxasset").select(["*"]) // "assetnum", "serialnum", "assettype", "serialnum", "siteid", "priority"
-      .where("assetnum").equal("BU1").fetch().then(function (resourceset) {
-        var jsondata = resourceset.thisResourceSet();
-        resp.success(jsondata);
+      maximo.resourceobject("mxasset").select(["*"]).where("assetnum").equal("BU1").fetch().then(function (resourceset) {
+        console.log(resourceset);
+        maximo.resourceobject("mxasset").resource(resourceset["resourcemboset"]["member"][0]["href"]).update(updates, Object.keys(updates)).then(function (resource) {
+          var jsondata = resource.JSON();
+          resp.success(jsondata);
+        }).fail(function (error) {
+          resp.error(error);
+        });
       });
     } catch (e) {
       resp.error(e.message);
@@ -34747,7 +34753,7 @@ function test_MaximoAPI(req, resp) {
   });
 }
 
-__webpack_require__.g.test_MaximoAPI = test_MaximoAPI;
+__webpack_require__.g.test_MaximoAPI_update = test_MaximoAPI_update;
 }();
 /******/ })()
 ;
