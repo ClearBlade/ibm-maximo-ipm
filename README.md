@@ -18,7 +18,7 @@ This IPM contains examples of how to read and write attribute info. for assets i
 - Initialize your workspace to push / pull from ClearBlade system: __cb-cli init__
 - Follow all prompts.
 - Push all libraries to your system: __cb-cli push -all-libraries__
-- Push all transpiled services to your systen: __cb-cli push -all-services__
+- Push all transpiled services to your system: __cb-cli push -all-services__
 
 # Using the services
 - Find the __maximoCredentials__ configuration (library) and edit it to match your Maximo system.
