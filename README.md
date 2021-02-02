@@ -11,6 +11,7 @@ This IPM contains examples of how to read and write attribute info. for assets i
 - In the cloned workspace on your machine type the following to install Node packages: __npm i__.
 
 # Transpiling code from TypeScript source files to JavaScript
+- Note that the source files (.ts) for services are found in __src/code/services__
 - Run this (replace <service name> with the name of the TypeScript service to transpile: __npm run build:service -service=yourServiceName__
 - The services provided for initial transpilation are __maximoRead__ and __maximoWrite__
 
@@ -36,3 +37,7 @@ This IPM contains examples of how to read and write attribute info. for assets i
 - Find the settings file (.json) for the same service in the same folder. Set the settings as needed. Pay attention to libraries that might be needed.
 - Push your service to your system: __cb-cli push -service <your service>__
 - Run the service in the ClearBlade console by clicking __Save and Test__
+
+# Creating your own configurations - libraries to hold configuration data
+- It is simplest to create configurations as JavaScript files.
+- Create configurations by adding dedicated folders in __code/libraries__ with the JavaScript files
