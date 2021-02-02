@@ -11,7 +11,7 @@ This IPM contains examples of how to read and write attribute info. for assets i
 - In the cloned workspace on your machine type the following to install Node packages: __npm i__.
 
 # Transpiling code from TypeScript source files to JavaScript
-- Run this (replace <service name> with the name of the TypeScript service to transpile: __npm run build:service -service=<service name>__
+- Run this (replace <service name> with the name of the TypeScript service to transpile: __npm run build:service -service=yourServiceName__
 - The services provided for initial transpilation are __maximoRead__ and __maximoWrite__
 
 # Pushing code to your ClearBlade system
