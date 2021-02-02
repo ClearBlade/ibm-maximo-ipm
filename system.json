@@ -2,8 +2,8 @@
     "auth": true,
     "description": "",
     "messaging_url": "community.clearblade.com:1883",
-    "name": "ibm-maximo",
+    "name": "ibm-maximo-ipm",
     "platform_url": "https://community.clearblade.com",
-    "system_key": "c4888df30bb4a1cac8c7f1f58c10",
-    "system_secret": "C4888DF30BBC84E2A1C5E0DDB8E101"
+    "system_key": "b297cc810ce0c1afbebea7e49244",
+    "system_secret": "B297CC810CB898E1DBF5F3B6C1C701"
 }
