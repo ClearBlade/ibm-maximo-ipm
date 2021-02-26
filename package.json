@@ -22,12 +22,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://sky-sharma@bitbucket.org/sky-sharma/ibm-maximo.git"
+    "url": "git+https://github.com/ClearBlade/ibm-maximo-ipm.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/sky-sharma/ibm-maximo#readme",
+  "homepage": "https://github.com/ClearBlade/ibm-maximo-ipm#readme",
+  "image_url": "https://raw.githubusercontent.com/ClearBlade/ibm-maximo-ipm/master/image.png",
+  "private": false,
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/polyfill": "^7.2.5",
